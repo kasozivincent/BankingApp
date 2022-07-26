@@ -14,7 +14,7 @@ namespace ClientProgram
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("0 ---> Quit");
             builder.AppendLine("1 ----> Create New Account");
-            builder.AppendLine("2 ------> Select Account");
+            builder.AppendLine("2 ----> Select Account");
             builder.AppendLine("3 ----> Deposit Money");
             builder.AppendLine("4 -----> Apply for loan");
             builder.AppendLine("5 ------> Display Account Details");
@@ -70,7 +70,7 @@ namespace ClientProgram
             WriteLine($"Account Number : {accountNumber} Account Balance: {balance}");
         }
 
-          private void DepositMoney()
+        private void DepositMoney()
         {
             Write("Insert account number >> ");
             int accountNumber = int.Parse(ReadLine());
@@ -79,8 +79,27 @@ namespace ClientProgram
             int amount = int.Parse(ReadLine());
 
             int newBalance = bank.DepositMoney(accountNumber, amount);
-
             WriteLine($"Your account balance is {newBalance}");
         }
+
+        private void ApplyForLoan()
+        {
+            Write("Insert account number >> ");
+            int accountNumber = int.Parse(ReadLine());
+
+            Write("Insert loan amount >> ");
+            int loanAmount = int.Parse(ReadLine());
+
+            if(bank.ApplyForLoan(accountNumber, loanAmount))
+                WriteLine("Loan approved");
+            else
+                WriteLine("Loan Denied!!!");
+        }
+
+        private void DisplayAccountDetails()
+            => WriteLine(bank.DisplayAccountDetails());
+
+        private void CalculateInterest()
+            => bank.CalculateInterest();
     }
 }
