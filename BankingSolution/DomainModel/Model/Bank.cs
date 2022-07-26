@@ -16,5 +16,11 @@ namespace Domain
         public int GetBalance(int accountNumber)
             => _accounts[accountNumber];
 
+        public void DepositMoney(int accountNumber, int amount)
+        {
+            int currentBalance = _accounts[accountNumber];
+            _accounts[accountNumber] = currentBalance + amount;
+        }
+
     }
 }
