@@ -83,8 +83,7 @@ namespace ClientProgram
         {
             Write("Insert account number >> ");
             int accountNumber = int.Parse(ReadLine());
-            int balance = bank.GetBalance(accountNumber);
-            WriteLine($"Account Number : {accountNumber} Account Balance: {balance}");
+            WriteLine(bank.SelectAccount(accountNumber));
         }
 
         private void DepositMoney()
