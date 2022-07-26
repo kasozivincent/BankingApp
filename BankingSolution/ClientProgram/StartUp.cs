@@ -4,7 +4,7 @@ namespace ClientProgram
     {
         public static void Main()
         {
-            BankProgram program = new BankProgram();
+            BankClient program = new ();
             program.Run();
         }
     }
