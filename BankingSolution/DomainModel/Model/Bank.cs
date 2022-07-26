@@ -22,5 +22,11 @@ namespace Domain
             _accounts[accountNumber] = currentBalance + amount;
         }
 
+        public bool ApplyForLoan(int accountNumber, int loanAmount)
+        {
+            int currentBalance = _accounts[accountNumber];
+            return currentBalance >= loanAmount/2;
+        }
+
     }
 }
