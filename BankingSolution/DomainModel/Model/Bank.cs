@@ -4,30 +4,32 @@ namespace Domain
 {
     public class Bank
     {
-        private Dictionary<int, int> _accounts = new Dictionary<int, int>();
+        private Dictionary<int, BankAccount> _accounts = new Dictionary<int, BankAccount>();
         private double _rate = 0.01;
         private int _accountNumber = 0;
 
-        public int CreateNewAccount()
+        public int CreateNewAccount(Status status)
         {
             _accountNumber++;
-            _accounts.Add(_accountNumber, 0);
+            BankAccount bankAccount = new BankAccount(_accountNumber);
+            bankAccount.Status = status;
+            _accounts.Add(_accountNumber, bankAccount);
             return _accountNumber;
         }
 
         public int GetBalance(int accountNumber)
-            => _accounts[accountNumber];
+            => _accounts[accountNumber].Balance;
 
         public int DepositMoney(int accountNumber, int amount)
         {
-            int currentBalance = _accounts[accountNumber];
-            _accounts[accountNumber] = currentBalance + amount;
-            return _accounts[accountNumber];
+            int currentBalance = _accounts[accountNumber].Balance;
+            _accounts[accountNumber].Balance = currentBalance + amount;
+            return _accounts[accountNumber].Balance;
         }
 
         public bool ApplyForLoan(int accountNumber, int loanAmount)
         {
-            int currentBalance = _accounts[accountNumber];
+            int currentBalance = _accounts[accountNumber].Balance;
             return currentBalance >= loanAmount/2;
         }
 
@@ -45,8 +47,8 @@ namespace Domain
             var accountNumbers = _accounts.Keys;
             foreach(var accountNumber in accountNumbers)
             {
-                int balance = _accounts[accountNumber];
-                _accounts[accountNumber] = (int)(balance * (1 + _rate));
+                int balance = _accounts[accountNumber].Balance;
+                _accounts[accountNumber].Balance = (int)(balance * (1 + _rate));
             }
         }
 
