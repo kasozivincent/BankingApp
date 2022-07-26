@@ -16,8 +16,8 @@ namespace Domain
             return _accountNumber;
         }
 
-        public int GetBalance(int accountNumber)
-            => _accounts[accountNumber].Balance;
+        public string SelectAccount(int accountNumber)
+            => _accounts[accountNumber].ToString();
 
         public int DepositMoney(int accountNumber, int amount)
         {
