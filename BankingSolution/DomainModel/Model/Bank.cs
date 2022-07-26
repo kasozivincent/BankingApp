@@ -13,6 +13,8 @@ namespace Domain
             return _accountNumber;
         }
 
-        
+        public int GetBalance(int accountNumber)
+            => _accounts[accountNumber];
+
     }
 }
