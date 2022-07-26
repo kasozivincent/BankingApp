@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Domain
 {
     public class Bank
@@ -26,6 +28,15 @@ namespace Domain
         {
             int currentBalance = _accounts[accountNumber];
             return currentBalance >= loanAmount/2;
+        }
+
+        public string DisplayAccountDetails()
+        {
+            StringBuilder builder = new StringBuilder();
+            var accountNumbers = _accounts.Keys;
+            foreach(int accountNumber in accountNumbers)
+                builder.AppendLine($"Account Number: {accountNumber} Account Balance: {_accounts[accountNumber]}");
+            return builder.ToString();
         }
 
     }
