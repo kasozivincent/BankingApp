@@ -6,8 +6,12 @@ namespace ClientProgram
 {
     public class BankClient
     {
-        private Bank bank = new Bank();
+        private Bank bank;
         private bool _isdone = default;
+        
+        public BankClient(Bank bank)
+            => this.bank = bank;
+        
 
         public void Run()
         {
