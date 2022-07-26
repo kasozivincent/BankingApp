@@ -33,6 +33,8 @@ namespace Domain
             return currentBalance >= loanAmount/2;
         }
 
+        public void SetStatus(int accountNumber, Status status)
+            => _accounts[accountNumber].Status = status;
         public string DisplayAccountDetails()
         {
             StringBuilder builder = new StringBuilder();
