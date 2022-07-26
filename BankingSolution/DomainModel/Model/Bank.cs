@@ -39,5 +39,15 @@ namespace Domain
             return builder.ToString();
         }
 
+        public void CalculateInterest()
+        {
+            var accountNumbers = _accounts.Keys;
+            foreach(var accountNumber in accountNumbers)
+            {
+                int balance = _accounts[accountNumber];
+                _accounts[accountNumber] = (int)(balance * (1 + _rate));
+            }
+        }
+
     }
 }
