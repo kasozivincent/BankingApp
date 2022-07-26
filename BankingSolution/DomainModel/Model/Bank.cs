@@ -4,8 +4,14 @@ namespace Domain
 {
     public class Bank
     {
-        private Dictionary<int, BankAccount> _accounts = new Dictionary<int, BankAccount>();
-        private int _accountNumber = 0;
+        private readonly IDictionary<int, BankAccount> _accounts;
+        private int _accountNumber;
+
+        public Bank(IDictionary<int, BankAccount> accounts, int accountCounter)
+        {
+            this._accounts = accounts;
+            this._accountNumber = accountCounter;
+        }
 
         public int CreateNewAccount(Status status)
         {
