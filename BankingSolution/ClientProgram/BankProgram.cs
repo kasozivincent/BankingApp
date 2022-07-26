@@ -80,7 +80,7 @@ namespace ClientProgram
             int amount = int.Parse(ReadLine());
 
             int currentBalance = _accounts[accountNumber];
-            _accounts.Add(accountNumber, currentBalance + amount);
+            _accounts[accountNumber] = currentBalance + amount;
 
             WriteLine($"Your account balance is {_accounts[accountNumber]}");
         }
