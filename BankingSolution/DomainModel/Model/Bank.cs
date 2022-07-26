@@ -5,7 +5,6 @@ namespace Domain
     public class Bank
     {
         private Dictionary<int, BankAccount> _accounts = new Dictionary<int, BankAccount>();
-        private double _rate = 0.01;
         private int _accountNumber = 0;
 
         public int CreateNewAccount(Status status)
@@ -38,20 +37,17 @@ namespace Domain
         public string DisplayAccountDetails()
         {
             StringBuilder builder = new StringBuilder();
-            var accountNumbers = _accounts.Keys;
-            foreach(int accountNumber in accountNumbers)
-                builder.AppendLine($"Account Number: {accountNumber} Account Balance: {_accounts[accountNumber]}");
+            var accounts = _accounts.Values;
+            foreach(BankAccount account in accounts)
+                builder.AppendLine(account.ToString());
             return builder.ToString();
         }
 
         public void CalculateInterest()
         {
-            var accountNumbers = _accounts.Keys;
-            foreach(var accountNumber in accountNumbers)
-            {
-                int balance = _accounts[accountNumber].Balance;
-                _accounts[accountNumber].Balance = (int)(balance * (1 + _rate));
-            }
+            var accounts = _accounts.Values;
+            foreach(var account in accounts)
+                account.AddInterest();
         }
 
     }
