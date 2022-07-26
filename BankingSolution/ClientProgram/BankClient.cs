@@ -19,6 +19,7 @@ namespace ClientProgram
             builder.AppendLine("4 -----> Apply for loan");
             builder.AppendLine("5 ------> Display Account Details");
             builder.AppendLine("6 -----> Calculate Interest");
+            builder.AppendLine("7 ----> Change Bank Status");
             
             string menuMessage = builder.ToString();
             while(!_isdone)
@@ -46,6 +47,8 @@ namespace ClientProgram
                 DisplayAccountDetails();
             else if(choice == 6)
                 CalculateInterest();
+            else if(choice == 7)
+                ChangeStatus();
             else
                 Console.WriteLine("Invalid Choice");
         }
@@ -56,10 +59,24 @@ namespace ClientProgram
             WriteLine("Thanks for using our services");
         }
 
+        private void ChangeStatus() 
+        {
+            Write("Insert account number >> ");
+            int accountNumber = int.Parse(ReadLine());
+            bank.SetStatus(accountNumber, RequestStatus());
+        }
         private  void CreateNewAccount()
         {
-            int accountNumber = bank.CreateNewAccount();
+            Status status = RequestStatus();
+            int accountNumber = bank.CreateNewAccount(status);
             WriteLine($"Your account number is {accountNumber}");
+        }
+
+        private Status RequestStatus() 
+        {
+            WriteLine("Enter 1 for foreign, 2 for domestic: ");
+            int val = int.Parse(ReadLine());
+            return (val == 1) ? Status.Foreign : Status.Domestic;
         }
 
         private void SelectAccount()
