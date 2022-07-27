@@ -14,7 +14,5 @@ namespace Domain.Accounts
         protected override double GetInterestRate()
             => 0.01;
 
-        protected override double GetRatio()
-            => 2.0/3;
     }
 }
