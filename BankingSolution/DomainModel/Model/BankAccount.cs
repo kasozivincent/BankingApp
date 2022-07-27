@@ -5,7 +5,7 @@ namespace Domain
         Domestic, Foreign
     }
 
-    public abstract class BankAccount
+    public abstract class BankAccount : IComparable<BankAccount>
     {
         public int AccountNumber { get; init; }
 
@@ -25,5 +25,15 @@ namespace Domain
 
         public abstract override string ToString();
         public abstract void AddInterest();
+
+        public int CompareTo(BankAccount? other)
+        {
+            if(this.Balance == other?.Balance)
+                return 0;
+            else if(this.Balance > other?.Balance)
+                return 1;
+            else
+                return -1;
+        }
     }
 }
