@@ -2,7 +2,7 @@ namespace Domain.Accounts
 {
     public class CheckingAccount : BankAccount
     {
-        public CheckingAccount(int accountNumber, int name) : base(accountNumber) {}
+        public CheckingAccount(int accountNumber) : base(accountNumber) {}
 
         public override void AddInterest()
         {}
