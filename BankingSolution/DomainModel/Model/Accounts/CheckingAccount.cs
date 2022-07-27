@@ -4,9 +4,6 @@ namespace Domain.Accounts
     {
         public CheckingAccount(int accountNumber) : base(accountNumber) {}
 
-        public override void AddInterest()
-        {}
-
 
         public override bool hasEnoughCollateral(int loanAmount)
             =>  Balance >= 2 * loanAmount / 3;
