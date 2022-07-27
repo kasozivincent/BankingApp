@@ -92,7 +92,7 @@ namespace ClientProgram
         }
 
           private int GetAccountType(){
-            WriteLine("Enter 1 for Savings Account and 2 for Checking Account");
+            WriteLine("Enter 1 for Savings Account \n2 for RegularChecking Account \n3 for InterestingChecking Account");
             int choice = int.Parse(ReadLine());
             return choice;
         }
