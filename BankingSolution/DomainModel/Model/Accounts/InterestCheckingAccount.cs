@@ -4,15 +4,17 @@ namespace Domain.Accounts
     {
         public InterestCheckingAccount(int accountNumber) : base(accountNumber){}
 
-        public override void AddInterest()
-        {
-            throw new NotImplementedException();
-        }
-
+       
         public override object Clone()
              => new InterestCheckingAccount(this.AccountNumber){Balance = this.Balance, Status = this.Status};
 
-        public override string ToString()
-            => $"(InterestChecking Account) Account No: {AccountNumber} Balance: {Balance} Status: {Status}";
+        protected override string GetAccountType()
+            => "InterestingCheckingAccount";
+
+        protected override double GetInterestRate()
+            => 0.01;
+
+        protected override double GetRatio()
+            => 2.0/3;
     }
 }
