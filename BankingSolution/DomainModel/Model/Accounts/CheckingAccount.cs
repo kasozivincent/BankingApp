@@ -7,6 +7,9 @@ namespace Domain.Accounts
         public override void AddInterest()
         {}
 
+        public override object Clone()
+            => new CheckingAccount(this.AccountNumber){Balance = this.Balance, Status = this.Status};
+
         public override bool hasEnoughCollateral(int loanAmount)
             =>  Balance >= 2 * loanAmount / 3;
 
