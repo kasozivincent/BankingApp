@@ -5,8 +5,7 @@ namespace Domain.Accounts
         public CheckingAccount(int accountNumber) : base(accountNumber) {}
 
 
-        public override bool hasEnoughCollateral(int loanAmount)
-            =>  Balance >= 2 * loanAmount / 3;
-
+        protected override double GetRatio()
+            => 2.0 / 3.0;
     }
 }
