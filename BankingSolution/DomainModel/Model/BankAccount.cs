@@ -11,7 +11,7 @@ namespace Domain
 
         public int Balance { get; set; }
         public Status Status { get; set; }
-        private double _rate = 0.01;
+        protected double _rate = 0.01;
 
         public BankAccount(int accountNumber)
             => this.AccountNumber = accountNumber;
