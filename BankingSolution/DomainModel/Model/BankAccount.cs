@@ -5,7 +5,7 @@ namespace Domain
         Domestic, Foreign
     }
 
-    public abstract class BankAccount : IComparable<BankAccount>
+    public abstract class BankAccount : IComparable<BankAccount>, ICloneable
     {
         public int AccountNumber { get; init; }
 
@@ -35,5 +35,7 @@ namespace Domain
             else
                 return -1;
         }
+
+        public abstract object Clone();
     }
 }
