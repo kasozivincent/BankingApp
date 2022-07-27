@@ -18,8 +18,13 @@ namespace Domain
         public int CreateNewAccount(Status status, int type)
         {
             _accountNumber++;
-            BankAccount bankAccount = (type == 1) ? new SavingsAccount(_accountNumber) 
-                                                  : new CheckingAccount(_accountNumber);
+            BankAccount bankAccount;
+            if(type == 1) 
+                bankAccount = new SavingsAccount(_accountNumber);
+            else if(type == 2)
+                bankAccount = new RegularCheckingAccount(_accountNumber);
+            else 
+                bankAccount = new InterestCheckingAccount(_accountNumber);
             bankAccount.Status = status;
             _accounts.Add(_accountNumber, bankAccount);
             return _accountNumber;
