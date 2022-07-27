@@ -72,7 +72,8 @@ namespace ClientProgram
         private  void CreateNewAccount()
         {
             Status status = RequestStatus();
-            int accountNumber = bank.CreateNewAccount(status);
+            int type = GetAccountType();
+            int accountNumber = bank.CreateNewAccount(status, type);
             WriteLine($"Your account number is {accountNumber}");
         }
 
@@ -88,6 +89,12 @@ namespace ClientProgram
             Write("Insert account number >> ");
             int accountNumber = int.Parse(ReadLine());
             WriteLine(bank.SelectAccount(accountNumber));
+        }
+
+          private int GetAccountType(){
+            WriteLine("Enter 1 for Savings Account and 2 for Checking Account");
+            int choice = int.Parse(ReadLine());
+            return choice;
         }
 
         private void DepositMoney()
