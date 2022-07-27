@@ -4,17 +4,16 @@ namespace Domain.Accounts
     {
         public SavingsAccount(int accountNumber) : base(accountNumber){}
        
-        public override void AddInterest()
-            => Balance += (int) (Balance * _rate);
-
         public override object Clone()
             => new SavingsAccount(this.AccountNumber){Balance = this.Balance, Status = this.Status};
 
-        public override bool hasEnoughCollateral(int loanAmount)
-            => Balance >= loanAmount / 2;
+        protected override string GetAccountType()
+            => "SavingsAccount";
 
-        public override string ToString()
-            => $"(Savings Account) Account No: {AccountNumber} Balance: {Balance} Status: {Status}";
-        
+        protected override double GetInterestRate()
+            => 0.01;
+
+        protected override double GetRatio()
+            => 1.0/2;
     }
 }
