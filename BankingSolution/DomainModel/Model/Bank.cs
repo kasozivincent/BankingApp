@@ -1,4 +1,5 @@
 using System.Text;
+using static System.Console;
 
 namespace Domain
 {
@@ -13,14 +14,16 @@ namespace Domain
             this._accountNumber = accountCounter;
         }
 
-        public int CreateNewAccount(Status status)
+        public int CreateNewAccount(Status status, int type)
         {
             _accountNumber++;
-            BankAccount bankAccount = new BankAccount(_accountNumber);
+            BankAccount bankAccount = new BankAccount(_accountNumber, type);
             bankAccount.Status = status;
             _accounts.Add(_accountNumber, bankAccount);
             return _accountNumber;
         }
+
+      
 
         public string SelectAccount(int accountNumber)
             => _accounts[accountNumber].ToString();
