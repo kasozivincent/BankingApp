@@ -1,8 +1,8 @@
 namespace Domain.Accounts
 {
-    public class SavingAccount : BankAccount
+    public class SavingsAccount : BankAccount
     {
-        public SavingAccount(int accountNumber) : base(accountNumber){}
+        public SavingsAccount(int accountNumber) : base(accountNumber){}
        
         public override void AddInterest()
             => Balance += (int) (Balance * _rate);
