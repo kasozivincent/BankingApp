@@ -20,12 +20,6 @@ namespace Domain
         public void DepositMoney(int amount) 
             => Balance += amount;
 
-
-        public abstract bool hasEnoughCollateral(int loanAmount);
-
-        public abstract override string ToString();
-        public abstract void AddInterest();
-
         public int CompareTo(BankAccount? other)
         {
             if(this.Balance == other?.Balance)
@@ -35,6 +29,24 @@ namespace Domain
             else
                 return -1;
         }
+
+        //--------------------------------------------------------------------------------------------------
+        public  bool hasEnoughCollateral(int loanAmount)
+            => Balance >= loanAmount * GetRatio();
+
+        protected abstract double GetRatio();
+
+        //--------------------------------------------------------------------------------------------------
+        public override string ToString()
+            => $"({GetAccountType()}) Account No: {AccountNumber} Balance: {Balance} Status: {Status}";
+
+        protected abstract string GetAccountType();
+        //--------------------------------------------------------------------------------------------------
+
+        public void AddInterest()
+            => Balance += (int) (Balance * GetInterestRate());
+        protected abstract double GetInterestRate();
+         //--------------------------------------------------------------------------------------------------
 
         public abstract object Clone();
     }
