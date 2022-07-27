@@ -1,5 +1,6 @@
 using System.Text;
 using static System.Console;
+using Domain.Accounts;
 
 namespace Domain
 {
@@ -17,7 +18,8 @@ namespace Domain
         public int CreateNewAccount(Status status, int type)
         {
             _accountNumber++;
-            BankAccount bankAccount = new BankAccount(_accountNumber, type);
+            BankAccount bankAccount = (type == 1) ? new SavingsAccount(_accountNumber) 
+                                                  : new CheckingAccount(_accountNumber);
             bankAccount.Status = status;
             _accounts.Add(_accountNumber, bankAccount);
             return _accountNumber;
