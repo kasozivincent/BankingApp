@@ -1,3 +1,5 @@
+using Model;
+
 namespace Domain
 {
     public enum Status
@@ -8,18 +10,23 @@ namespace Domain
     public abstract class BankAccount : IComparable<BankAccount>, ICloneable
     {
         public int AccountNumber { get; init; }
-
         public int Balance { get; set; }
-        public Status Status { get; set; }
+        public  IStatus Status { get; set; }
         protected double _rate = 0.01;
 
-        public BankAccount(int accountNumber)
-            => this.AccountNumber = accountNumber;
+        public BankAccount(int accountNumber, IStatus status)
+        {
+            this.AccountNumber = accountNumber;
+            this.Status = status;
+        }
             
 
         public void DepositMoney(int amount) 
             => Balance += amount;
 
+        public double Charge()
+            => this.Status.Charge();
+        
         public int CompareTo(BankAccount? other)
         {
             if(this.Balance == other?.Balance)
@@ -38,7 +45,7 @@ namespace Domain
 
         //--------------------------------------------------------------------------------------------------
         public override string ToString()
-            => $"({GetAccountType()}) Account No: {AccountNumber} Balance: {Balance} Status: {Status}";
+            => $"({GetAccountType()}) Account No: {AccountNumber} Balance: {Balance} Status: {Status.ToString()}";
 
         protected abstract string GetAccountType();
         //--------------------------------------------------------------------------------------------------
