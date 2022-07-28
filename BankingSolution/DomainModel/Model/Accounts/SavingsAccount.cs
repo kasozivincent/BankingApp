@@ -1,11 +1,13 @@
+using Model;
+
 namespace Domain.Accounts
 {
     public class SavingsAccount : BankAccount
     {
-        public SavingsAccount(int accountNumber) : base(accountNumber){}
+        public SavingsAccount(int accountNumber, IStatus status) : base(accountNumber, status){}
        
         public override object Clone()
-            => new SavingsAccount(this.AccountNumber){Balance = this.Balance, Status = this.Status};
+            => new SavingsAccount(this.AccountNumber, this.Status){Balance = this.Balance, Status = this.Status};
 
         protected override string GetAccountType()
             => "SavingsAccount";
