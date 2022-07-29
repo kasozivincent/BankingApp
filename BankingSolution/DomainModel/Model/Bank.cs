@@ -1,6 +1,7 @@
 using System.Text;
 using static System.Console;
 using Domain.Accounts;
+using Model;
 
 namespace Domain
 {
@@ -15,22 +16,14 @@ namespace Domain
             this._accountNumber = accountCounter;
         }
 
-        public int CreateNewAccount(Status status, int type)
+        public int CreateNewAccount(IStatus status, int type)
         {
             _accountNumber++;
             BankAccount bankAccount;
-            if(type == 1) 
-                bankAccount = new SavingsAccount(_accountNumber);
-            else if(type == 2)
-                bankAccount = new RegularCheckingAccount(_accountNumber);
-            else 
-                bankAccount = new InterestCheckingAccount(_accountNumber);
-            bankAccount.Status = status;
+            bankAccount = AccountFactory.CreateAccount(type, _accountNumber, status);
             _accounts.Add(_accountNumber, bankAccount);
             return _accountNumber;
         }
-
-      
 
         public string SelectAccount(int accountNumber)
             => _accounts[accountNumber].ToString();
@@ -48,7 +41,7 @@ namespace Domain
             return currentBalance >= loanAmount/2;
         }
 
-        public void SetStatus(int accountNumber, Status status)
+        public void SetStatus(int accountNumber, IStatus status)
             => _accounts[accountNumber].Status = status;
         public string DisplayAccountDetails()
         {
